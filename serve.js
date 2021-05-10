@@ -28,21 +28,21 @@ app.use(
   )
 );
 
-app.use("/opc", express.static(path.join(__dirname, "build")));
+app.use("/static", express.static(path.join(__dirname, "build")));
 
-app.get("/opc/static/css/main.chunk.css", function (req, res) {
+app.get("/static/static/css/main.chunk.css", function (req, res) {
   res.sendFile(jsAndCssFiles.cssMainChunkFile);
 });
 
-app.get("/opc/static/js/main.chunk.js", function (req, res) {
+app.get("/static/static/js/main.chunk.js", function (req, res) {
   res.sendFile(jsAndCssFiles.jsMainChunkFile);
 });
 
-app.get("/opc/static/js/magic.js", function (req, res) {
+app.get("/static/static/js/magic.js", function (req, res) {
   res.sendFile(jsAndCssFiles.jsChunkGlob);
 });
 
-app.get("/opc/*", function (req, res) {
+app.get("/static/*", function (req, res) {
   console.log("File not found, serving index.html");
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
