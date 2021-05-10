@@ -9,11 +9,14 @@ const cssMainChunkGlob = path.join(
 );
 const jsMainChunkGlob = path.join(__dirname, "build/static/js/main.*.chunk.js");
 const jsChunkGlob = path.join(__dirname, "build/static/js/*[1-9].chunk.js");
+const jsRuntimeMainGlob = path.join(__dirname, "build/static/js/runtime-main.*.js");
+
 
 const jsAndCssFiles = {
   cssMainChunkFile: glob.sync(cssMainChunkGlob, null).find(() => true),
   jsMainChunkFile: glob.sync(jsMainChunkGlob, null).find(() => true),
-  jsChunkGlob: glob.sync(jsChunkGlob, null).find(() => true),
+  jsChunkFile: glob.sync(jsChunkGlob, null).find(() => true),
+  jsRuntimeMainFile: glob.sync(jsRuntimeMainGlob, null).find(() => true),
 };
 
 console.log(jsAndCssFiles);
@@ -39,7 +42,11 @@ app.get("/static/static/js/main.chunk.js", function (req, res) {
 });
 
 app.get("/static/static/js/magic.js", function (req, res) {
-  res.sendFile(jsAndCssFiles.jsChunkGlob);
+  res.sendFile(jsAndCssFiles.jsChunkFile);
+});
+
+app.get("/static/static/js/runtime-main.js", function (req, res) {
+  res.sendFile(jsAndCssFiles.jsRuntimeMainFile);
 });
 
 app.get("/static/*", function (req, res) {
