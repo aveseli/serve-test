@@ -3,12 +3,15 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
+declare var SERVER_URL: any;
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
+        <div>{SERVER_URL}</div>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

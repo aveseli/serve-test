@@ -33,6 +33,10 @@ app.use(
 
 app.use("/static", express.static(path.join(__dirname, "build")));
 
+app.get("/config.js", function(req, res) {
+  res.sendFile(path.join(__dirname, "config", "config.prod.js"));
+});
+
 app.get("/static/static/css/main.chunk.css", function (req, res) {
   res.sendFile(jsAndCssFiles.cssMainChunkFile);
 });
